@@ -1,3 +1,5 @@
+
+
 import mysql.connector
 import pandas as pd
 import streamlit as st
@@ -32,9 +34,10 @@ def fetch_data(bus_type, route, price_range, star_rating, seat_availability):
 
     connection = mysql.connector.connect(
         host='127.0.0.1',
+        port='3306',
         user='root',
-        password='6381167213',
-        database='redbus'
+        password='1234',
+        database='redbus_1'
     )
     try:
         df = pd.read_sql_query(query, connection, params=params)
@@ -43,7 +46,7 @@ def fetch_data(bus_type, route, price_range, star_rating, seat_availability):
         df = pd.DataFrame()  # Return an empty DataFrame in case of error
     finally:
         connection.close()
-    
+
     return df
 
 # Main function to run the Streamlit app
@@ -73,36 +76,36 @@ def main():
         "Non A/C Seater / Sleeper (2+1)", "METRO LUXURY A/C", "ULTRA DELUXE (NON-AC, 2+2 PUSH BACK)",
         "NON A/C Push Back (2+2)", "Express(Non AC Seater)", "NON A/C Seater (2+3)",
         "Scania Multi-Axle AC Semi Sleeper (2+2)", "NON A/C Seater/ Sleeper (2+1)", "NON A/C Semi Sleeper / Sleeper (2+1)",
-        "A/C Seater/Sleeper (2+1)", "Volvo Multi Axle A/C Sleeper I-Shift B11R (2+1)", 
-        "Volvo Multi-Axle I-Shift A/C Semi Sleeper (2+2)", "Scania AC Multi Axle Sleeper (2+1)", 
-        "Volvo A/C B11R Multi Axle Semi Sleeper (2+2)", "VE A/C Sleeper (2+1)", "Bharat Benz A/C Sleeper (2+1)", 
-        "SAPTAGIRI EXPRESS", "A/C Semi Sleeper / Sleeper (2+1)", "Scania A/C Semi Sleeper (2+2)", 
-        "Bharat Benz NON A/C sleeper (2+1)", "Volvo Multi Axle Sleeper B11R (2+1)", "NON AC Seater / Sleeper 2+1", 
-        "NON A/C Seater Push Back (2+2)", "NON A/C Semi Sleeper (2+2)", "DOLPHIN CRUISE (VOLVO / SCANIA A.C Multi Axle)", 
-        "NON A/C Hi-Tech Push Back (2+2)", "Volvo Multi-Axle A/C Sleeper (2+1)", "Volvo Multi-Axle Sleeper A/C (2+1)", 
-        "Volvo 9600 Multi-Axle A/C Sleeper (2+1)", "Volvo A/C Sleeper (2+1)", "Mercedes Benz Multi-Axle A/C Sleeper (2+1)", 
-        "Volvo 9600 A/C Seater/Sleeper (2+1)", "A/C Volvo B11R Multi-Axle Sleeper (2+1)", 
-        "Volvo Multi-Axle A/C Semi Sleeper (2+2)", "Non AC Seater (2+2)", "NON A/C Executive (2+1)", 
-        "Volvo Multi Axle B9R A/C Sleeper (2+1)", "VE Executive A/C Sleeper (1+1)", "NON A/C Seater PushBack (2+2)", 
-        "NON A/C Hi-Tech (2+2)", "NON A/C Seater (2+2)", "A/C Seater Push Back (2+2)", 
-        "RAJADHANI AC (CONVERTED METRO LUXURY)", "RAJDHANI (A.C. Semi Sleeper)", "Lahari A/C sleeper", 
-        "Lahari Non A/C Sleeper Cum Seater", "Bharat Benz A/C Seater (2+2)", "NON A/C Airbus (2+2)", 
-        "AC Seater (2+2)", "LAHARI A/C SLEEPER CUM SEATER", "Deluxe (Non AC Seater 2+2)", 
-        "Volvo Multi-Axle A/C seater/sleeper (2+1)", "Ordinary Non AC Seater 2+3", "Shatabdi AC Seater 2+2", 
-        "Volvo AC Seater 2+2", "Janrath AC Seater 2+3", "Janrath AC Seater 2+2", "Rajdhani Non AC Seater 2+3", 
-        "AshokLeyland Stile A/C", "A/C Seater (2+2)", "Pink Express AC Seater 2+2", "VE A/C Seater / Sleeper (2+1)", 
-        "A/C Seater / Sleeper (2+2)", "VE A/C Seater / Sleeper (2+2)", "A/C Sleeper (2+2)", "VE A/C Seater (2+2)", 
-        "A/C Semi Sleeper (2+2)", "Bharat Benz A/C Semi Sleeper (2+2)", "VE A/C Semi Sleeper (2+2)", 
-        "NON A/C Seater / Sleeper (3+1)", "Volvo AC Seater (2+2)", "Express Non AC Seater 2+3", 
-        "Volvo A/C Seater / Sleeper (2+1)", "AC Seater (2+3)", "NON A/C Sleeper (1+2)", "Volvo A/C Seater / Sleeper (2+2)", 
-        "A/C Seater Tempo Traveller (2+1)", "Non AC Seater (2+3)", "Volvo AC Semi Sleeper (2+2)", 
-        "Non A/C Seater Push Back (2+2)", "Ashok Leyland Stile A/C", "Volvo A/C Seater (2+2)", 
-        "Volvo A/C Multi Axle Sleeper (2+1)", "Volvo A/C Multi Axle (2+1)", "Volvo B11R Multi Axle Semi Sleeper (2+2)", 
-        "Mercedes Multi-Axle Semi Sleeper (2+2)", "Super Luxury Volvo AC Seater Pushback 2+2", 
-        "Himmani Deluxe 2+2 Non AC Seater", "Volvo Multi-Axle A/C Semisleeper (2+2)", 
-        "Volvo Multi-Axle B9R A/c Semi Sleeper (2+2)", "Super Deluxe Non AC Seater Air Bus (2+2)", 
-        "Swift Deluxe Non AC Air Bus (2+2)", "SWIFT-GARUDA A/C SEATER BUS", "Super Fast Non AC Seater (2+3)", 
-        "Low Floor AC Seater 2+2", "2+1 Air Suspension A/C Seater / Sleeper", "AC MULTI AXLE", 
+        "A/C Seater/Sleeper (2+1)", "Volvo Multi Axle A/C Sleeper I-Shift B11R (2+1)",
+        "Volvo Multi-Axle I-Shift A/C Semi Sleeper (2+2)", "Scania AC Multi Axle Sleeper (2+1)",
+        "Volvo A/C B11R Multi Axle Semi Sleeper (2+2)", "VE A/C Sleeper (2+1)", "Bharat Benz A/C Sleeper (2+1)",
+        "SAPTAGIRI EXPRESS", "A/C Semi Sleeper / Sleeper (2+1)", "Scania A/C Semi Sleeper (2+2)",
+        "Bharat Benz NON A/C sleeper (2+1)", "Volvo Multi Axle Sleeper B11R (2+1)", "NON AC Seater / Sleeper 2+1",
+        "NON A/C Seater Push Back (2+2)", "NON A/C Semi Sleeper (2+2)", "DOLPHIN CRUISE (VOLVO / SCANIA A.C Multi Axle)",
+        "NON A/C Hi-Tech Push Back (2+2)", "Volvo Multi-Axle A/C Sleeper (2+1)", "Volvo Multi-Axle Sleeper A/C (2+1)",
+        "Volvo 9600 Multi-Axle A/C Sleeper (2+1)", "Volvo A/C Sleeper (2+1)", "Mercedes Benz Multi-Axle A/C Sleeper (2+1)",
+        "Volvo 9600 A/C Seater/Sleeper (2+1)", "A/C Volvo B11R Multi-Axle Sleeper (2+1)",
+        "Volvo Multi-Axle A/C Semi Sleeper (2+2)", "Non AC Seater (2+2)", "NON A/C Executive (2+1)",
+        "Volvo Multi Axle B9R A/C Sleeper (2+1)", "VE Executive A/C Sleeper (1+1)", "NON A/C Seater PushBack (2+2)",
+        "NON A/C Hi-Tech (2+2)", "NON A/C Seater (2+2)", "A/C Seater Push Back (2+2)",
+        "RAJADHANI AC (CONVERTED METRO LUXURY)", "RAJDHANI (A.C. Semi Sleeper)", "Lahari A/C sleeper",
+        "Lahari Non A/C Sleeper Cum Seater", "Bharat Benz A/C Seater (2+2)", "NON A/C Airbus (2+2)",
+        "AC Seater (2+2)", "LAHARI A/C SLEEPER CUM SEATER", "Deluxe (Non AC Seater 2+2)",
+        "Volvo Multi-Axle A/C seater/sleeper (2+1)", "Ordinary Non AC Seater 2+3", "Shatabdi AC Seater 2+2",
+        "Volvo AC Seater 2+2", "Janrath AC Seater 2+3", "Janrath AC Seater 2+2", "Rajdhani Non AC Seater 2+3",
+        "AshokLeyland Stile A/C", "A/C Seater (2+2)", "Pink Express AC Seater 2+2", "VE A/C Seater / Sleeper (2+1)",
+        "A/C Seater / Sleeper (2+2)", "VE A/C Seater / Sleeper (2+2)", "A/C Sleeper (2+2)", "VE A/C Seater (2+2)",
+        "A/C Semi Sleeper (2+2)", "Bharat Benz A/C Semi Sleeper (2+2)", "VE A/C Semi Sleeper (2+2)",
+        "NON A/C Seater / Sleeper (3+1)", "Volvo AC Seater (2+2)", "Express Non AC Seater 2+3",
+        "Volvo A/C Seater / Sleeper (2+1)", "AC Seater (2+3)", "NON A/C Sleeper (1+2)", "Volvo A/C Seater / Sleeper (2+2)",
+        "A/C Seater Tempo Traveller (2+1)", "Non AC Seater (2+3)", "Volvo AC Semi Sleeper (2+2)",
+        "Non A/C Seater Push Back (2+2)", "Ashok Leyland Stile A/C", "Volvo A/C Seater (2+2)",
+        "Volvo A/C Multi Axle Sleeper (2+1)", "Volvo A/C Multi Axle (2+1)", "Volvo B11R Multi Axle Semi Sleeper (2+2)",
+        "Mercedes Multi-Axle Semi Sleeper (2+2)", "Super Luxury Volvo AC Seater Pushback 2+2",
+        "Himmani Deluxe 2+2 Non AC Seater", "Volvo Multi-Axle A/C Semisleeper (2+2)",
+        "Volvo Multi-Axle B9R A/c Semi Sleeper (2+2)", "Super Deluxe Non AC Seater Air Bus (2+2)",
+        "Swift Deluxe Non AC Air Bus (2+2)", "SWIFT-GARUDA A/C SEATER BUS", "Super Fast Non AC Seater (2+3)",
+        "Low Floor AC Seater 2+2", "2+1 Air Suspension A/C Seater / Sleeper", "AC MULTI AXLE",
         "A/C Seater Hi-Tech Push Back (2+2)", "A/C Seater / Sleeper (3+1)"
     ])
 
@@ -110,10 +113,10 @@ def main():
     st.session_state.price_range = st.sidebar.slider("Price Range", 0, 5000, (0, 5000))
     st.session_state.star_rating = st.sidebar.slider("Star Rating", 0.0, 5.0, 0.0)
     st.session_state.seat_availability = st.sidebar.slider(
-        "Seat Availability", 
-        min_value=0, 
-        max_value=100, 
-        value=(0, 100), 
+        "Seat Availability",
+        min_value=0,
+        max_value=100,
+        value=(0, 100),
         step=1
     )
 
@@ -124,7 +127,7 @@ def main():
             route=st.session_state.route,
             price_range=st.session_state.price_range,
             star_rating=st.session_state.star_rating,
-            seat_availability=st.session_state.seat_availability 
+            seat_availability=st.session_state.seat_availability
         )
         st.dataframe(data)
     else:
@@ -139,15 +142,7 @@ def main():
         st.session_state.seat_availability = (0, 100)
         st.experimental_rerun()
 
-if _name_ == "_main_":
-    try:
-        import pyarrow  # Check if pyarrow is installed
-        print("pyarrow version:", pyarrow._version_)
-    except ImportError:
-        print("pyarrow is not installed.")
-    except OSError as e:
-        print(f"OS error: {e}")
-    
+if __name__ == "__main__":
     try:
         main()
     except Exception as e:
